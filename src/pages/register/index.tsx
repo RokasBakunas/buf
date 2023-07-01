@@ -3,6 +3,7 @@ import styles from './register.module.css'
 import axios from "axios";
 import Footer from './../../components/footer/footer';
 import Header from './../../components/header/header';
+import Link from 'next/link';
 
 import { useRouter } from "next/router";
 

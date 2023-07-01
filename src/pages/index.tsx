@@ -43,16 +43,20 @@ export default function Home() {
     <>
     <Header/>
       {jwt ? (
-        <div>
+        <div className='flex m-2 p-2 flex-col flex-wrap justify-center items-center'>
           {/* mapinam is question laukelio duomenis */}
           {questions.map(question => (
+           <>
+            <Link className='flex m-2 p-2 flex-col flex-wrap justify-center items-center' href={`./question/${question.id}`}>
             <div key={question.id}>
               <h2>{question.question_text}</h2>
               <h5>Autorius: {question.userName}</h5>
               <h5>Atsakymų skaičius: {question.answers_id.length}</h5>
-              <button className='fixed bottom-0 m-2 right-0 z-50' onClick={logout}>Atsijungti</button>
 
-            </div>
+            </div></Link>              <button className='fixed bottom-0 m-2 right-0 z-50' onClick={logout}>Atsijungti</button>
+
+            </>
+            
             
           ))}
 

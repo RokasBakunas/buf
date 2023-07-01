@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from './register.module.css'
 import axios from "axios";
+import Footer from './../../components/footer/footer';
+import Header from './../../components/header/header';
 
 import { useRouter } from "next/router";
 
@@ -49,6 +51,7 @@ export default function Register() {
 
   return (
     <>
+    <Header/>
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>Registracija</h1>
       {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
@@ -102,7 +105,7 @@ export default function Register() {
         </div>
     </form>
 </div>
-
+<Footer/>
     </>
   );
 }

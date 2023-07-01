@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import Link from 'next/link';
+import Footer from './../components/footer/footer';
+import Header from './../components/header/header';
 
 export default function Home() {
   const [jwt, setJwt] = useState(null);
@@ -31,8 +33,10 @@ export default function Home() {
 
   return (
     <>
+    <Header/>
       {jwt ? (
         <div>
+          {/* mapinam is question laukelio duomenis */}
           {questions.map(question => (
             <div key={question.id}>
               <h2>{question.question_text}</h2>
@@ -48,6 +52,7 @@ export default function Home() {
           <Link href="/login">Prisijungti čia</Link> arba <Link href="/register">Užsiregistruokite čia</Link>
         </div>
       )}
+    <Footer/>
     </>
   );
 }

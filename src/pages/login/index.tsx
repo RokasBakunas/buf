@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
+import Footer from './../../components/footer/footer';
+import Header from './../../components/header/header';
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -37,6 +39,7 @@ export default function Login() {
 
   return (
     <>
+    <Header/>
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <h1>Prisijungimas</h1>
         {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
@@ -75,6 +78,6 @@ export default function Login() {
           </div>
         </form>
       </div>
-    </>
+  <Footer/> </>
   );
 }

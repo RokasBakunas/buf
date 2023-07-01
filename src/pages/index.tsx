@@ -27,6 +27,14 @@ export default function Home() {
     }
   }, [jwt]);
 
+//atsijungimas istrinam jwt cookies
+  const logout = () => {
+    Cookies.remove('jwt');
+    setJwt(null);
+  }
+
+
+
   if (jwt === null) {
     return <div>Loading...</div>
   }
@@ -42,9 +50,12 @@ export default function Home() {
               <h2>{question.question_text}</h2>
               <h5>Autorius: {question.userName}</h5>
               <h5>Atsakymų skaičius: {question.answers_id.length}</h5>
+              <button className='fixed bottom-0 m-2 right-0 z-50' onClick={logout}>Atsijungti</button>
 
             </div>
+            
           ))}
+
         </div>
       ) : (
         <div>
@@ -52,7 +63,8 @@ export default function Home() {
           <Link href="/login">Prisijungti čia</Link> arba <Link href="/register">Užsiregistruokite čia</Link>
         </div>
       )}
-    <Footer/>
+
+    <Footer/>    
     </>
   );
 }

@@ -5,6 +5,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 export default function Register() {
+  const [errors, setErrors] = useState([]);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -16,7 +18,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:3002/register", { email, password, name });
+      const res = await axios.post("http://localhost:3001/register", { email, password, name });
 
       console.log(res.data);
 
@@ -24,12 +26,20 @@ export default function Register() {
         // Atvaizduojame pranešimą apie sėkmingą registraciją
         setMessage(res.data.response);
 
-        // Po 3 sekundžių peradresuojame vartotoją į login puslapį
         setTimeout(() => {
           router.push("/login");
-        }, 3000);
+        }, 1500);
       }
     } catch (error) {
+      if (error.response) {
+        setErrors(error.response.data.response);
+      } else if (error.request) {
+        console.log(error.request);
+        setErrors(["Klaida siunčiant užklausą."]);
+      } else {
+        console.log('Error', error.message);
+        setErrors(["Nežinoma klaida."]);
+      }
       console.log(error);
     }
   };
@@ -41,6 +51,10 @@ export default function Register() {
     <>
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>Registracija</h1>
+      {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
+
+      {message && <h2 className="text-green-500">{message}</h2>}
+
     <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
         <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
@@ -92,5 +106,3 @@ export default function Register() {
     </>
   );
 }
-
-  

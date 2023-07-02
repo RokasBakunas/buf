@@ -39,6 +39,20 @@ export default function QuestionPage() {
     }
   }, [id]);
 
+  const handleDeleteAnswer = async (answerId) => {
+    try {
+      await axios.delete(`http://localhost:3001/answer/${answerId}`, {
+        headers: {
+          Authorization: Cookies.get('jwt'),
+        },
+      });
+      const updatedAnswers = answers.filter((answer) => answer.id !== answerId);
+      setAnswers(updatedAnswers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleDeleteQuestion = async () => {
     try {
       await axios.delete(`http://localhost:3001/question/${id}`, {
@@ -67,7 +81,12 @@ export default function QuestionPage() {
     {answers.map((answer) => (
       <li key={answer.id}>
           {answer.answer_text}
-     
+          <button
+                onClick={() => handleDeleteAnswer(answer.id)}
+                className="ml-2 text-xs text-red-500"
+              >
+                Trinti atsakymą
+              </button>
       </li>
     ))}
   </ul>

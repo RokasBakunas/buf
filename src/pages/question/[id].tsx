@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import WriteAnswer from '../../components/writeAnswer/writeAnswer'
+import Logout from './../../components/logout/logout'
 import Link from 'next/link';
 
 export default function QuestionPage() {
@@ -61,7 +62,7 @@ export default function QuestionPage() {
 
 <div className="flex flex-col items-center justify-center">
   <h1>Klausimas: {question.question_text}</h1>
-  <WriteAnswer/>
+  <WriteAnswer questionId={id}/>
   <ul>
     {answers.map((answer) => (
       <li key={answer.id}>
@@ -70,7 +71,7 @@ export default function QuestionPage() {
       </li>
     ))}
   </ul>
-
+  <Logout/>
   <button onClick={handleDeleteQuestion}>Ištrinti klausimą</button>
 </div>
 

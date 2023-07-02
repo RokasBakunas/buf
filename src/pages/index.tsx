@@ -5,6 +5,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import Footer from './../components/footer/footer';
 import Header from './../components/header/header';
+import Logout from "./../components/logout/logout";
 
 export default function Home() {
   const [questions, setQuestions] = useState([]);
@@ -45,10 +46,11 @@ export default function Home() {
               <div className='p-2 m-1'>{question.question_text}</div>
             </Link>
           </div>
+          
         ))}
       </div>
 
-      <Footer />
+      <Footer /><Logout/>
     </>
   );
 }

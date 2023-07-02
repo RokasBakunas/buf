@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import Footer from './../../components/footer/footer';
 import Header from './../../components/header/header';
+import ButtonReg from './../../components/buttonReg/buttonReg'
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -71,6 +72,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
               />
+              <ButtonReg/>
           </div>
           <div className="flex items-center justify-between">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

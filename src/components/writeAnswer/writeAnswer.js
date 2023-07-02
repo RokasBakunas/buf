@@ -1,21 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+
 
 const AnswerForm = ({ questionId }) => {
   const [answerText, setAnswerText] = useState('');
+  const router = useRouter();
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post(`http://localhost:3001/question/answer/${questionId}`, {
-        answer_text: answerText,
-      });
+      const token = Cookies.get('jwt'); 
+      if (!token) {
+        router.push('/login');
+        return;
+      }
+      await axios.post(
+        `http://localhost:3001/question/answer/${questionId}`,
+        {
+          answer_text: answerText,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
       console.log('Atsakymas sėkmingai pateiktas!');
+      setTimeout(() => {
+
+        setAnswerText('');
+
+        router.reload(`/question/${questionId}`);
+      }, 0.1);
     } catch (error) {
       console.error(error);
     }
   };
+
+
 
   return (
 <form onSubmit={handleSubmit} className="mt-4">

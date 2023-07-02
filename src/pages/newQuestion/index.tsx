@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -6,20 +6,44 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import Link from 'next/link';
 
+import Logout from "./../../components/logout/logout";
+
+
 export default function NewQuestion() {
   const [questionText, setQuestionText] = useState('');
   const router = useRouter();
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = Cookies.get('jwt');
+      if (!token) {
+        router.push('/login');
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
 
+    
+
+
+    
     try {
+      const token = Cookies.get('jwt');
+      if (!token) {
+        router.push('/login');
+        return;
+      }
+
       const response = await axios.post(
         'http://localhost:3001/question/',
         { question_text: questionText },
         {
           headers: {
-            authorization: Cookies.get('jwt'),
+            Authorization: token,
             'Content-Type': 'application/json',
           },
         }
@@ -58,7 +82,7 @@ export default function NewQuestion() {
           </button>
         </form>
       </div>
-
+<Logout/>
       <Footer />
     </>
   );

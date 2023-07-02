@@ -11,12 +11,17 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Čia gaukite klausimų sąrašą iš API
     const fetchQuestions = async () => {
       try {
+        const token = Cookies.get('jwt'); 
+        if (!token) {
+          router.push('/login');
+          return;
+        }
+
         const response = await axios.get('http://localhost:3001/questions/', {
           headers: {
-            Authorization: Cookies.get('jwt'), // Jei reikia autorizacijos
+            Authorization: token,
           },
         });
         setQuestions(response.data);
@@ -36,11 +41,9 @@ export default function Home() {
         <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
         {questions.map((question) => (
           <div key={question.id}>
-                          <Link href={`/question/${question.id}`}>
-
-            <div className='p-2 m-1'>{question.question_text}</div>
+            <Link href={`/question/${question.id}`}>
+              <div className='p-2 m-1'>{question.question_text}</div>
             </Link>
-
           </div>
         ))}
       </div>
@@ -49,3 +52,4 @@ export default function Home() {
     </>
   );
 }
+

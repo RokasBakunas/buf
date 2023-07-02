@@ -4,6 +4,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import WriteAnswer from '../../components/writeAnswer/writeAnswer'
 import Link from 'next/link';
 
 export default function QuestionPage() {
@@ -60,12 +61,12 @@ export default function QuestionPage() {
 
 <div className="flex flex-col items-center justify-center">
   <h1>Klausimas: {question.question_text}</h1>
+  <WriteAnswer/>
   <ul>
     {answers.map((answer) => (
       <li key={answer.id}>
-        <Link href={`/atsakymai/${answer.id}`}>
           {answer.answer_text}
-        </Link>
+     
       </li>
     ))}
   </ul>

@@ -36,7 +36,11 @@ export default function Home() {
         <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
         {questions.map((question) => (
           <div key={question.id}>
+                          <Link href={`/question/${question.id}`}>
+
             <div className='p-2 m-1'>{question.question_text}</div>
+            </Link>
+
           </div>
         ))}
       </div>

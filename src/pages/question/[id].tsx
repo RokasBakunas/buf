@@ -8,6 +8,8 @@ import Link from 'next/link';
 
 export default function QuestionPage() {
   const [question, setQuestion] = useState(null);
+  const [answers, setAnswers] = useState([]);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -23,6 +25,8 @@ export default function QuestionPage() {
           }
         );
         setQuestion(response.data);
+        setAnswers(response.data.answers || []);
+
       } catch (error) {
         console.error(error);
       }
@@ -52,24 +56,24 @@ export default function QuestionPage() {
 
   return (
     <>
-      <Header />
+<Header />
 
-      <div className="flex flex-col items-center justify-center">
-        <h1>Klausimas: {question.question_text}</h1>
-        <ul>
-          {question.answers_id.map((answerId) => (
-            <li key={answerId}>
-              <Link href={`/atsakymai/${answerId}`}>
-                Atsakymai #{answerId}
-              </Link>
-            </li>
-          ))}
-        </ul>
+<div className="flex flex-col items-center justify-center">
+  <h1>Klausimas: {question.question_text}</h1>
+  <ul>
+    {answers.map((answer) => (
+      <li key={answer.id}>
+        <Link href={`/atsakymai/${answer.id}`}>
+          {answer.answer_text}
+        </Link>
+      </li>
+    ))}
+  </ul>
 
-        <button onClick={handleDeleteQuestion}>Ištrinti klausimą</button>
-      </div>
+  <button onClick={handleDeleteQuestion}>Ištrinti klausimą</button>
+</div>
 
-      <Footer />
+<Footer />
     </>
   );
 }

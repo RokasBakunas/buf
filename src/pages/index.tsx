@@ -25,9 +25,19 @@ export default function Home() {
             Authorization: token,
           },
         });
+
+ 
+
+
         setQuestions(response.data);
       } catch (error) {
         console.error(error);
+               // tikrinam ar galiojantis token, jei negalioja trinam cookies jwt ir perkeliam i login psl
+               if (error.response && error.response.status === 401) {
+                Cookies.remove('jwt'); 
+                router.push('/login');
+                return;
+              }
       }
     };
 
@@ -43,7 +53,7 @@ export default function Home() {
         {questions.map((question) => (
           <div key={question.id}>
             <Link href={`/question/${question.id}`}>
-              <div className='p-2 m-1'>{question.question_text}</div>
+              <div className='p-2 m-1'>{question.question_text} ({question.answers_id ? question.answers_id.length : 0})</div>
             </Link>
           </div>
           

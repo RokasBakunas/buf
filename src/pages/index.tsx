@@ -11,6 +11,8 @@ export default function Home() {
   const [questions, setQuestions] = useState([]);
   const router = useRouter();
 
+  const [answered, setAnswered] = useState(null);  
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -20,7 +22,7 @@ export default function Home() {
           return;
         }
 
-        const response = await axios.get('http://localhost:3001/questions/', {
+        const response = await axios.get(`http://localhost:3001/questions/answered=${answered}`, {
           headers: {
             Authorization: token,
           },
@@ -42,13 +44,31 @@ export default function Home() {
     };
 
     fetchQuestions();
-  }, []);
+  }, [answered]);
 
   return (
     <>
       <Header />
 
       <div className="flex flex-col items-center justify-center">
+        
+      <div className="flex m-5 p-5">
+  
+    <button className='m-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => setAnswered(null)}>
+        Visi
+      </button>  
+      <button className='m-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => setAnswered(true)}>
+        Su atsakymais
+      </button>
+      <button className='m-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => setAnswered(false)}>
+        Be atsakymų
+      </button>
+
+</div>
+
+
+
+
         <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
         {questions.map((question) => (
           <div key={question.id}>

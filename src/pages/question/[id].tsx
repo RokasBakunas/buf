@@ -5,8 +5,6 @@ import Cookies from 'js-cookie';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import WriteAnswer from '../../components/writeAnswer/writeAnswer'
-import Logout from './../../components/logout/logout'
-import Link from 'next/link';
 import jwtDecode from 'jwt-decode';
 
 
@@ -144,6 +142,7 @@ if (decodedToken.exp < currentTime) {
               >
                 Trinti atsakymą
               </button>
+              
               <button
                   onClick={() => handleLikeAnswer(answer.id)}
                   className="ml-2 text-xs text-blue-500"
@@ -153,7 +152,6 @@ if (decodedToken.exp < currentTime) {
       </li>
     ))}
   </ul>
-  <Logout/>
   <button onClick={handleDeleteQuestion}>Ištrinti klausimą</button>
 </div>
 

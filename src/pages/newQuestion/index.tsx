@@ -6,8 +6,6 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import Link from 'next/link';
 
-import Logout from "./../../components/logout/logout";
-
 
 export default function NewQuestion() {
   const [questionText, setQuestionText] = useState('');
@@ -63,15 +61,15 @@ export default function NewQuestion() {
   return (
     <>
       <Header />
-      <div className="flex flex-col items-center justify-center">
+      <div className="pt-10 flex flex-col items-center justify-center">
         <form onSubmit={handleQuestionSubmit} className="w-64">
-          <label className="mb-2">
+          <label className="p-1">
             Klausimo tekstas:
             <input
               type="text"
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
-              className="border border-gray-300 rounded px-3 py-2 w-full"
+              className="border border-gray-300 rounded my-2 px-3 py-2 w-full"
             />
           </label>
           <button
@@ -82,7 +80,6 @@ export default function NewQuestion() {
           </button>
         </form>
       </div>
-<Logout/>
       <Footer />
     </>
   );

@@ -5,7 +5,8 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import Footer from './../../components/footer/footer';
 import Header from './../../components/header/header';
-import ButtonReg from './../../components/buttonReg/buttonReg'
+import Link from "next/link";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -43,6 +44,7 @@ export default function Login() {
     <>
     <Header/>
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <div className="p-5 m-3">Jei dar neesi registruotas vartotojas kviečiame <Link className="text-green-500" href="/register">užsiregistruoti</Link>. <div className="break-keep text-center">Arba prisijungti.</div></div>
         <h1>Prisijungimas</h1>
         {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
 
@@ -72,7 +74,6 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
               />
-              <ButtonReg/>
           </div>
           <div className="flex items-center justify-between">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

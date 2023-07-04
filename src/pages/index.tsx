@@ -5,7 +5,6 @@ import axios from 'axios';
 import Link from 'next/link';
 import Footer from './../components/footer/footer';
 import Header from './../components/header/header';
-import Logout from "./../components/logout/logout";
 
 export default function Home() {
   const [questions, setQuestions] = useState([]);
@@ -69,18 +68,36 @@ export default function Home() {
 
 
 
-        <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
+          <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
+
+          <table className='table-fixed sm'>            
+            <thead>
+    <tr>
+      <th>Klausimas</th>
+      <th>Atsakymų</th>
+    </tr>
+  </thead>
+  <tbody>
         {questions.map((question) => (
-          <div key={question.id}>
-            <Link href={`/question/${question.id}`}>
-              <div className='p-2 m-1'>{question.question_text} ({question.answers_id ? question.answers_id.length : 0})</div>
-            </Link>
-          </div>
+       
+            <tr key={question.id} className='questionsTable '>
+      <td className='text-center'><Link href={`/question/${question.id}`}>{question.question_text}</Link></td>
+      <td className='text-center'>{question.answers_id ? question.answers_id.length : 0}</td>
+    
+    </tr>
+  
+
+
+  
+            
+            
           
         ))}
+          </tbody>
+</table>
       </div>
 
-      <Footer /><Logout/>
+      <Footer />
     </>
   );
 }

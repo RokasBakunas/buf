@@ -40,14 +40,31 @@ export default function QuestionPage() {
 
   useEffect(() => {
     const token = Cookies.get('jwt');
-const decodedToken = jwtDecode(token);
+    if (!token) {
+      router.push('/login'); // jei neegzistuoja
+      return;
+    }
+    try {
 
+const decodedToken = jwtDecode(token);
+const currentTime = Date.now() / 1000; //laikas dabar sekundem
+
+if (decodedToken.exp < currentTime) {
+  router.push('/login'); // jei negaliojantis token
+  return;
+}
 
 
     if (id) {
       fetchQuestion();
     }
-  }, [id]);
+  } catch (error) {
+    console.error(error);
+    router.push('/login'); // tokenas netinkamas
+  
+
+  }
+}, [id]);
 
   const handleDeleteAnswer = async (answerId) => {
     try {

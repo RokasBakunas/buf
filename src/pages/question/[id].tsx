@@ -27,13 +27,25 @@ export default function QuestionPage() {
             },
           }
         );
+
+          
+        const sortedQuestions = response.data.answers.sort((a, b) => {
+          const dateA = new Date(a.addDate);
+          const dateB = new Date(b.addDate);
+          return dateB - dateA;
+        });
         setQuestion(response.data);
+        
         setAnswers(response.data.answers || []);
+         //bandom rusiuoti pagal data
 
       } catch (error) {
         console.error(error);
       }
     };
+
+ 
+    
 
 
   useEffect(() => {

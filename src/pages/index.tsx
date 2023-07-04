@@ -27,6 +27,14 @@ export default function Home() {
           },
         });
 
+
+        //bandom rusiuoti pagal data
+        const sortedQuestions = response.data.sort((a, b) => {
+          const dateA = new Date(a.addDate);
+          const dateB = new Date(b.addDate);
+          return dateB - dateA;
+        });
+
  
 
 

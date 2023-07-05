@@ -25,7 +25,7 @@ export default function Home() {
           return;
         }
 
-        const response = await axios.get(`http://94.244.94.82:3001/questions/answered=${answered}`, {
+        const response = await axios.get(`https://bub-ka8e.onrender.com/questions/answered=${answered}`, {
           headers: {
             Authorization: token,
           },

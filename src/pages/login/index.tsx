@@ -18,7 +18,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://94.244.94.82:3001/login", { email, password });
+      const res = await axios.post("https://bub-ka8e.onrender.com/login", { email, password });
 
       if (res.data.response === "Prisijungimas sėkmingas") {
         Cookies.set('jwt', res.data.jwt);
@@ -43,7 +43,7 @@ export default function Login() {
   return (
     <>
     <Header/>
-    <div className="text-center pt-10">   
+    <div className="p-3 m-3 rounded-md bg-slate-100 text-center pt-10">   
       <p className="font-bold	text-red-500 animate-pulse">  
 Klausimus mato tik prisijungę bendruomenės nariai.</p>
    

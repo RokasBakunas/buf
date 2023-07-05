@@ -20,7 +20,7 @@ const AnswerForm = ({ questionId }) => {
         return;
       }
       await axios.post(
-        `http://94.244.94.82:3001/question/answer/${questionId}`,
+        `https://bub-ka8e.onrender.com/question/answer/${questionId}`,
         {
           answer_text: answerText,
         },

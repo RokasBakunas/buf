@@ -78,7 +78,8 @@ export default function Home() {
 
 
 
-          <h1 className='p-3'>Vartotoju užduoti klausimai:</h1>
+          <h1 className='rounded-lg	box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white mb-2 py-1 px-3'>
+            Mūsų bendruomenės nariai, kurie turi atitinkamas žinias ar patirtį, atsakys į jūsų klausimus.</h1>
 
           <table className='table-fixed sm'>            
             <thead>

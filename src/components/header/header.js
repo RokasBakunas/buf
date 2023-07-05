@@ -59,7 +59,7 @@ const Header = (props) => {
 <Head><link rel="icon" href="/ico.ico" sizes="any" /><title>BestQuestion</title></Head>
     <header className="text-center bg-gray-200 border-indigo-500 border-b-2 border-blue-500">
       <div className="justify-center item-center container mx-auto py-4">
-      <Image className={styles.logo} layout="responsive"	width={100} height={100} src="/Logo.png" alt="BestQuestion" priority/>
+      <Image className={styles.logo} 	width={300} height={100} src="/Logo.png" alt="BestQuestion" priority/>
         <nav className="flex flex-wrap justify-center space-x-4">
           <Link className="text-blue-500 hover:underline" href="/">
            Pagrindinis

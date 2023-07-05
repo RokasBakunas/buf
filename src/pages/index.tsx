@@ -7,6 +7,10 @@ import Footer from './../components/footer/footer';
 import Header from './../components/header/header';
 
 export default function Home() {
+
+
+
+
   const [questions, setQuestions] = useState([]);
   const router = useRouter();
 
@@ -21,7 +25,7 @@ export default function Home() {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3001/questions/answered=${answered}`, {
+        const response = await axios.get(`http://94.244.94.82:3001/questions/answered=${answered}`, {
           headers: {
             Authorization: token,
           },
@@ -39,6 +43,8 @@ export default function Home() {
 
 
         setQuestions(response.data);
+
+
       } catch (error) {
         console.error(error);
                // tikrinam ar galiojantis token, jei negalioja trinam cookies jwt ir perkeliam i login psl
@@ -52,6 +58,10 @@ export default function Home() {
 
     fetchQuestions();
   }, [answered]);
+
+
+
+
 
   return (
     <>
@@ -106,6 +116,8 @@ export default function Home() {
         ))}
           </tbody>
 </table>
+
+
       </div>
 
       <Footer />

@@ -20,7 +20,7 @@ export default function QuestionPage() {
     const fetchQuestion = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/question/${id}`,
+          `http://94.244.94.82:3001/question/${id}`,
           {
             headers: {
               Authorization: Cookies.get('jwt'),
@@ -78,7 +78,7 @@ if (decodedToken.exp < currentTime) {
 //trinam atsakyma
   const handleDeleteAnswer = async (answerId) => {
     try {
-      await axios.delete(`http://localhost:3001/answer/${answerId}`, {
+      await axios.delete(`http://94.244.94.82:3001/answer/${answerId}`, {
         headers: {
           Authorization: Cookies.get('jwt'),
         },
@@ -92,7 +92,7 @@ if (decodedToken.exp < currentTime) {
 //like 
   const handleLikeAnswer = async (answerId) => {
     try {
-      await axios.post(`http://localhost:3001/answer/like`, { answerId }, {
+      await axios.post(`http://94.244.94.82:3001/answer/like`, { answerId }, {
         headers: {
           Authorization: Cookies.get('jwt'),
         },
@@ -106,7 +106,7 @@ if (decodedToken.exp < currentTime) {
 //trinam klausima pagal id
   const handleDeleteQuestion = async () => {
     try {
-      await axios.delete(`http://localhost:3001/question/${id}`, {
+      await axios.delete(`http://94.244.94.82:3001/question/${id}`, {
         headers: {
           Authorization: Cookies.get('jwt'), 
         },

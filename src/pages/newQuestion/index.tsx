@@ -8,6 +8,8 @@ import Link from 'next/link';
 
 
 export default function NewQuestion() {
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [questionText, setQuestionText] = useState('');
   const router = useRouter();
 
@@ -25,7 +27,10 @@ export default function NewQuestion() {
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
 
-    
+    if (questionText.trim() === '') {
+      setErrorMessage('Klausimo tekstas negali būti tuščias.');
+      return;
+    }
 
 
     
@@ -62,6 +67,8 @@ export default function NewQuestion() {
     <>
       <Header />
       <div className="pt-10 flex flex-col items-center justify-center">
+      {errorMessage && <p className="text-center text-red-500">{errorMessage}</p>}
+
         <form onSubmit={handleQuestionSubmit} className="w-64">
           <label className="p-1">
             Klausimo tekstas:

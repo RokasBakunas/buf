@@ -21,7 +21,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:3001/register", { email, password, name });
+      const res = await axios.post("http://94.244.94.82:3001/register", { email, password, name });
 
       console.log(res.data);
 

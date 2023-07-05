@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 const AnswerForm = ({ questionId }) => {
   const [answerText, setAnswerText] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const router = useRouter();
 
   
@@ -19,7 +20,7 @@ const AnswerForm = ({ questionId }) => {
         return;
       }
       await axios.post(
-        `http://localhost:3001/question/answer/${questionId}`,
+        `http://94.244.94.82:3001/question/answer/${questionId}`,
         {
           answer_text: answerText,
         },
@@ -38,6 +39,11 @@ const AnswerForm = ({ questionId }) => {
       }, 0.1);
     } catch (error) {
       console.error(error);
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage('Įvyko klaida. Bandykite dar kartą.');
+      }
     }
   };
 
@@ -47,6 +53,8 @@ const AnswerForm = ({ questionId }) => {
 <form onSubmit={handleSubmit} className="mt-4">
   <label className="block mb-2">
     <span className="text-gray-700">Atsakymas:</span>
+    {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
     <input
       type="text"
       value={answerText}

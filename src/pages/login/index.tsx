@@ -43,12 +43,21 @@ export default function Login() {
   return (
     <>
     <Header/>
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="text-center pt-10">   
+      <p className="font-bold	text-red-500 animate-pulse">  
+Klausimus mato tik prisijungę bendruomenės nariai.</p>
+   
+<p className="px-3 py-2">Sveiki atvykę į BestQuestion - svetainę, kurioje gausite atsakymus į savo klausimus! Mūsų puslapio bendruomenė yra sudaryta iš įvairių žinių ir patirties turinčių žmonių, kurie nori padėti ir dalintis savo žiniomis su Jumis.</p>
+
+<p className="px-3 py-2">Ar turite klausimų, į kuriuos negalite rasti atsakymų? Tuomet jūs esate tinkamoje vietoje! Nesvarbu, ar tai susiję su mokslu, technologija, kultūra, kalbomis, sportu ar bet kokia kita tema - mūsų bendruomenėje yra žmonių, turinčių žinių ir norinčių padėti.</p>
+
+    </div>
+      <div className="flex flex-col items-center  min-h-screen py-2">
         <div className="p-5 m-3">Jei dar neesi registruotas vartotojas kviečiame <Link className="text-green-500" href="/register">užsiregistruoti</Link>. <div className="break-keep text-center">Arba prisijungti.</div></div>
         <h1>Prisijungimas</h1>
         {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
 
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <form className="bg-white shadow-md rounded px-8 pt-1 pb-8 mb-4" onSubmit={handleSubmit}>
           <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                   El. paštas

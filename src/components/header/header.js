@@ -5,12 +5,14 @@ import Image from 'next/image'
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { useRouter } from "next/router";
+import Head from 'next/head'
 
 
 
 
 
-const Header = () => {
+
+const Header = (props) => {
   const router = useRouter();
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -50,10 +52,12 @@ const Header = () => {
     Cookies.remove('jwt');
     router.push('/login');
   };
-  
+
   return (
-    <>
-    <header className="text-center bg-gray-200">
+    
+    <>                
+<Head><link rel="icon" href="/ico.ico" sizes="any" /><title>BestQuestion</title></Head>
+    <header className="text-center bg-gray-200 border-l-4 border-indigo-500">
       <div className="justify-center item-center container mx-auto py-4">
       <Image className={styles.logo} layout="responsive"	width={100} height={100} src="/Logo.png" alt="BestQuestion" priority/>
         <nav className="flex flex-wrap justify-center space-x-4">
@@ -68,7 +72,7 @@ const Header = () => {
           ) : (
             <>
               <Link className="text-blue-500 hover:underline" href="/register">
-                Registruotis
+                Registruotis 
               </Link>
             </>
           )}

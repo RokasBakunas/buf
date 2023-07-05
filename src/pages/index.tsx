@@ -55,6 +55,8 @@ export default function Home() {
 
   return (
     <>
+            <title>BestQuestion</title>
+
       <Header />
 
       <div className="flex flex-col items-center justify-center">

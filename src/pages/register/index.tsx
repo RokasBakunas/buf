@@ -53,9 +53,12 @@ export default function Register() {
   return (
     <>
     <Header/>
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center pt-10 min-h-screen py-2">
       <h1>Registracija</h1>
-      {errors.map((error, i) => <div key={i} className="text-red-500">{error}</div>)}
+      {Array.isArray(errors) && errors.map((error, i) => (
+  <div key={i} className="text-red-500">{error}</div>
+))}
+
 
       {message && <h2 className="text-green-500">{message}</h2>}
 

@@ -16,7 +16,7 @@ export default function QuestionPage() {
 
   const router = useRouter();
   const { id } = router.query;
-
+// gaunam klausima pagal id
     const fetchQuestion = async () => {
       try {
         const response = await axios.get(
@@ -28,7 +28,7 @@ export default function QuestionPage() {
           }
         );
 
-          
+          // rusiuojam pagal ikelimo data
         const sortedQuestions = response.data.answers.sort((a, b) => {
           const dateA = new Date(a.addDate);
           const dateB = new Date(b.addDate);
@@ -75,7 +75,7 @@ if (decodedToken.exp < currentTime) {
 
   }
 }, [id]);
-
+//trinam atsakyma
   const handleDeleteAnswer = async (answerId) => {
     try {
       await axios.delete(`http://localhost:3001/answer/${answerId}`, {
@@ -89,7 +89,7 @@ if (decodedToken.exp < currentTime) {
       console.error(error);
     }
   };
-
+//like 
   const handleLikeAnswer = async (answerId) => {
     try {
       await axios.post(`http://localhost:3001/answer/like`, { answerId }, {
@@ -103,7 +103,7 @@ if (decodedToken.exp < currentTime) {
     }
   };
 
-
+//trinam klausima pagal id
   const handleDeleteQuestion = async () => {
     try {
       await axios.delete(`http://localhost:3001/question/${id}`, {
@@ -116,7 +116,7 @@ if (decodedToken.exp < currentTime) {
       console.error(error);
     }
   };
-
+// jei klausimai null,undifined ar false yra rodo loading
   if (!question) {
     return <div>Loading...</div>;
   }
@@ -126,14 +126,15 @@ if (decodedToken.exp < currentTime) {
     
     <>
 <Header />
-
+{/* mapinam question text */}
 <div className="flex flex-col items-center justify-center">
-  <h1>Klausimas: {question.question_text}</h1>
+  <h1 className='text-xl pt-5'>Klausimas: {question.question_text}</h1>
+  {/* importujam atsakymo rasymo componenta */}
   <WriteAnswer questionId={id}/>
-  <ul>
+  <ul className='pt-7'>
     {answers.map((answer) => (
       <li key={answer.id}>
-
+{/* Like kiekis */}
 <div className="inline-flex items-center justify-center w-10 h-4 mr-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-full focus:shadow-outline hover:bg-indigo-800">
  {answer.gained_likes_number} 
  <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20">
@@ -144,10 +145,18 @@ if (decodedToken.exp < currentTime) {
  </svg>
 </div>
 
+{/* Like migtukas  */}
+<button
+                  onClick={() => handleLikeAnswer(answer.id)}
+                  className="ml-2 text-xs text-blue-500 pr-3"
+                >
+                  {answer.likes.includes(decodedToken.id) ? 'Dislike' : 'Like'}
+                </button>
 
 
-
-  {answer.answer_text}
+{/* atsakymo tekstas */}
+  {answer.answer_text} {/* apdorom addDate laukeli ir ko nereik  nukerpam */} [{answer.addDate.replace(/T/, ' ').slice(0, -8)}]
+          {/* trinti atsakyma */}
           <button
                 onClick={() => handleDeleteAnswer(answer.id)}
                 className="ml-2 text-xs text-red-500"
@@ -155,15 +164,11 @@ if (decodedToken.exp < currentTime) {
                 Trinti atsakymą
               </button>
               
-              <button
-                  onClick={() => handleLikeAnswer(answer.id)}
-                  className="ml-2 text-xs text-blue-500"
-                >
-                  {answer.likes.includes(decodedToken.id) ? 'Dislike' : 'Like'}
-                </button>
+          
       </li>
     ))}
   </ul>
+  {/* trinti klausima */}
   <button onClick={handleDeleteQuestion}>Ištrinti klausimą</button>
 </div>
 

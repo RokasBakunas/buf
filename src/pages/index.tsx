@@ -72,7 +72,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center">
         
       <div className="flex m-5 p-5">
-  
+  <div className='flex flex-wrap  max-sm:flex-col  md:flex-row item-center'>
     <button className='m-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => setAnswered(null)}>
         Visi
       </button>  
@@ -82,13 +82,13 @@ export default function Home() {
       <button className='m-1 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded' onClick={() => setAnswered(false)}>
         Be atsakymų
       </button>
-
+      </div>
 </div>
 
 
 
 
-          <h1 className='rounded-lg	box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white mb-2 py-1 px-3'>
+          <h1 className='mx-3 rounded-lg	box-decoration-slice bg-gradient-to-r from-indigo-600 to-pink-500 text-white mb-2 py-1 px-3'>
             Mūsų bendruomenės nariai, kurie turi atitinkamas žinias ar patirtį, atsakys į jūsų klausimus.</h1>
 
           <table className='table-fixed sm'>            

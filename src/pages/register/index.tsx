@@ -21,7 +21,7 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("https://bub-ka8e.onrender.com/register", { email, password, name });
+      const res = await axios.post(`${process.env.BACKEND_DOMAIN}/register`, { email, password, name });
 
       console.log(res.data);
 
@@ -111,5 +111,8 @@ export default function Register() {
 </div>
 <Footer/>
     </>
+    
   );
+  
 }
+

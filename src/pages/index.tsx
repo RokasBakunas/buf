@@ -5,11 +5,11 @@ import axios from 'axios';
 import Link from 'next/link';
 import Footer from './../components/footer/footer';
 import Header from './../components/header/header';
+import { env } from 'process';
+import { loadEnvConfig } from '@next/env'
+
 
 export default function Home() {
-
-
-
 
   const [questions, setQuestions] = useState([]);
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function Home() {
           return;
         }
 
-        const response = await axios.get(`https://bub-ka8e.onrender.com/questions/answered=${answered}`, {
+        const response = await axios.get(`${process.env.BACKEND_DOMAIN}/questions/answered=${answered}`, {
           headers: {
             Authorization: token,
           },

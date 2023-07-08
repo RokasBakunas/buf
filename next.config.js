@@ -4,3 +4,11 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+
+
+module.exports = {
+  env: {
+    BACKEND_DOMAIN: 'https://bub-ka8e.onrender.com',
+  },
+}

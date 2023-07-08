@@ -20,7 +20,7 @@ const AnswerForm = ({ questionId }) => {
         return;
       }
       await axios.post(
-        `https://bub-ka8e.onrender.com/question/answer/${questionId}`,
+        `process.env.BACKEND_DOMAIN/question/answer/${questionId}`,
         {
           answer_text: answerText,
         },

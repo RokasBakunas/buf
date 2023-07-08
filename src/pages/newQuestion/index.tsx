@@ -42,7 +42,7 @@ export default function NewQuestion() {
       }
 
       const response = await axios.post(
-        'https://bub-ka8e.onrender.com/question/',
+        `${process.env.BACKEND_DOMAIN}/question/`,
         { question_text: questionText },
         {
           headers: {

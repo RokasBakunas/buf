@@ -18,7 +18,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://bub-ka8e.onrender.com/login", { email, password });
+      const res = await axios.post(`${process.env.BACKEND_DOMAIN}/login`, { email, password });
 
       if (res.data.response === "Prisijungimas sėkmingas") {
         Cookies.set('jwt', res.data.jwt);

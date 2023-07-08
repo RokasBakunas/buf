@@ -20,7 +20,7 @@ export default function QuestionPage() {
     const fetchQuestion = async () => {
       try {
         const response = await axios.get(
-          `https://bub-ka8e.onrender.com/question/${id}`,
+          `${process.env.BACKEND_DOMAIN}/question/${id}`,
           {
             headers: {
               Authorization: Cookies.get('jwt'),
@@ -78,7 +78,7 @@ if (decodedToken.exp < currentTime) {
 //trinam atsakyma
   const handleDeleteAnswer = async (answerId) => {
     try {
-      await axios.delete(`https://bub-ka8e.onrender.com/answer/${answerId}`, {
+      await axios.delete(`${process.env.BACKEND_DOMAIN}/answer/${answerId}`, {
         headers: {
           Authorization: Cookies.get('jwt'),
         },
@@ -92,7 +92,7 @@ if (decodedToken.exp < currentTime) {
 //like 
   const handleLikeAnswer = async (answerId) => {
     try {
-      await axios.post(`https://bub-ka8e.onrender.com/answer/like`, { answerId }, {
+      await axios.post(`${process.env.BACKEND_DOMAIN}/answer/like`, { answerId }, {
         headers: {
           Authorization: Cookies.get('jwt'),
         },
@@ -106,7 +106,7 @@ if (decodedToken.exp < currentTime) {
 //trinam klausima pagal id
   const handleDeleteQuestion = async () => {
     try {
-      await axios.delete(`https://bub-ka8e.onrender.com/question/${id}`, {
+      await axios.delete(`${process.env.BACKEND_DOMAIN}/question/${id}`, {
         headers: {
           Authorization: Cookies.get('jwt'), 
         },

@@ -20,7 +20,7 @@ const AnswerForm = ({ questionId }) => {
         return;
       }
       await axios.post(
-        `process.env.BACKEND_DOMAIN/question/answer/${questionId}`,
+        `${process.env.BACKEND_DOMAIN}/question/answer/${questionId}`,
         {
           answer_text: answerText,
         },
@@ -35,7 +35,7 @@ const AnswerForm = ({ questionId }) => {
 
         setAnswerText('');
 
-        router.reload(`/question/${questionId}`);
+        router.reload(`${process.env.BACKEND_DOMAIN}/question/${questionId}`);
       }, 0.1);
     } catch (error) {
       console.error(error);

@@ -9,6 +9,6 @@ module.exports = nextConfig
 
 module.exports = {
   env: {
-    BACKEND_DOMAIN: 'https://bub-ka8e.onrender.com',
+    BACKEND_DOMAIN: 'http://localhost:3001',
   },
 }
